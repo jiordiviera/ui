@@ -1,3 +1,204 @@
+# Agentic Coding Guidelines for PHP-UI Laravel Project
+
+This file contains essential build commands, code style guidelines, and conventions for agentic coding agents working in this Laravel + Livewire + Tailwind CSS project.
+
+## Build, Lint & Test Commands
+
+### Development Commands
+```bash
+# Start full development stack (PHP server, queue, logs, Vite)
+composer run dev
+
+# Frontend development only
+bun run dev        # or npm run dev
+
+# Build frontend assets for production
+bun run build      # or npm run build
+```
+
+### Code Quality & Testing
+```bash
+# Format PHP code (Laravel Pint)
+vendor/bin/pint --dirty
+
+# Run all tests
+php artisan test
+
+# Run specific test file
+php artisan test tests/Feature/DashboardTest.php
+
+# Run filtered tests by name
+php artisan test --filter="guests are redirected"
+
+# Check code style without fixing
+vendor/bin/pint --test
+```
+
+### Database & Artisan
+```bash
+# Create new model with factory and seeder
+php artisan make:model Post -mfs
+
+# Create Livewire component
+php artisan make:livewire Posts/CreatePost
+
+# Create feature test with Pest
+php artisan make:test PostTest --pest
+
+# Run database migrations
+php artisan migrate --force
+```
+
+## Project Architecture
+
+### Tech Stack
+- **PHP**: 8.4.14
+- **Laravel**: v12.44.0
+- **Livewire**: v3.7.3
+- **Tailwind CSS**: v4.0.7
+- **Pest**: v4.3.0
+- **Laravel Fortify**: v1.33.0
+- **Database**: SQLite
+
+### Directory Structure
+```
+app/
+├── Livewire/           # Livewire components (App\Livewire namespace)
+├── Http/Controllers/   # HTTP controllers
+├── Models/            # Eloquent models
+└── Actions/Fortify/    # Fortify authentication actions
+
+resources/
+├── views/
+│   ├── components/ui/     # Reusable UI components (x-ui-button, etc.)
+│   ├── components/layouts/ # Layout templates
+│   ├── livewire/        # Livewire component views
+│   └── docs/           # Documentation pages
+
+tests/
+├── Feature/            # Feature/integration tests
+└── Unit/              # Unit tests
+```
+
+## Code Style Guidelines
+
+### PHP Code Style
+- **Use PHP 8 constructor property promotion**: `public function __construct(public Service $service) {}`
+- **Always use explicit return types**: `function processData(): array`
+- **Use type hints for parameters**: `function handle(User $user, string $action): void`
+- **Use curly braces** for all control structures, even single-line
+- **Prefer PHPDoc over inline comments** for complex logic
+- **No empty constructors** without parameters
+
+### Naming Conventions
+- **Variables & methods**: `camelCase` with descriptive names like `isUserAuthenticated`
+- **Classes**: `PascalCase` (User, UserProfileController)
+- **Constants**: `UPPER_SNAKE_CASE`
+- **Database tables**: `snake_case` with plural names
+- **Livewire properties**: `camelCase` public properties
+- **Routes**: `kebab-case` in URL patterns, `snake_case` for named routes
+
+### Laravel-Specific Patterns
+- **Use Eloquent relationships** over raw queries: `$user->posts()` not `DB::table('posts')`
+- **Prevent N+1 queries** with eager loading: `Post::with('author')->get()`
+- **Use Form Request classes** for validation, not inline validation
+- **Use factories for test data**: `User::factory()->create()`
+- **Use `config()` helper**, not `env()` outside config files
+- **Follow Laravel 12 structure**: No `app/Http/Middleware/`, use `bootstrap/app.php`
+
+### Livewire v3 Best Practices
+- **Namespace**: `App\Livewire` (not `App\Http\Livewire`)
+- **Single root element** required for each component
+- **Use `wire:key`** in loops: `<div wire:key="item-{{ $item->id }}">`
+- **Loading states**: Use `wire:loading` and `wire:dirty`
+- **Event dispatching**: Use `$this->dispatch()`, not `emit()`
+- **Real-time updates**: Use `wire:model.live` for immediate updates
+- **Lifecycle hooks**: `mount()`, `updatedPropertyName()`
+
+### Frontend & Tailwind CSS v4
+- **Use `@import "tailwindcss"`**, not `@tailwind` directives
+- **Component styling**: Use existing UI components as patterns
+- **Dark mode**: Support with `dark:` prefix if page uses it
+- **Spacing**: Use `gap-*` utilities for flex containers, not margins
+- **Responsive**: Mobile-first approach with Tailwind breakpoints
+- **Avoid deprecated utilities**: Use `bg-black/50` not `bg-opacity-50`
+
+### Blade Components
+- **Props with `@props()`** at top of component files
+- **Dynamic components**: Use `<x-dynamic-component>` for icon components
+- **Slot content**: Use `{{ $slot }}` for flexible content
+- **Attribute merging**: Use `{{ $attributes->class([$classes]) }}`
+- **Conditionals**: Prefer Blade `@if` over inline PHP
+
+## Testing Guidelines
+
+### Pest v4 Testing
+- **All tests use Pest**: `it('does something', function () { ... });`
+- **Feature tests** for integration scenarios, **Unit tests** for isolated logic
+- **Use descriptive test names**: `it('redirects guests to login page')`
+- **Assertions**: Use specific methods like `assertRedirect()`, `assertStatus(200)`
+- **Mock appropriately**: `use function Pest\Laravel\mock;`
+- **Datasets for repeated tests**: Use `->with([...])` for validation testing
+
+### Test Patterns
+```php
+// Basic test structure
+it('authenticated users can view dashboard', function () {
+    $user = User::factory()->create();
+    
+    $this->actingAs($user)
+        ->get('/dashboard')
+        ->assertStatus(200);
+});
+
+// Livewire component testing
+it('can update profile information', function () {
+    $user = User::factory()->create();
+    
+    Livewire::actingAs($user)
+        ->test(Profile::class)
+        ->set('name', 'New Name')
+        ->call('updateProfileInformation')
+        ->assertSet('name', 'New Name');
+});
+```
+
+## Development Workflow
+
+1. **Before coding**: Check existing components/patterns in sibling files
+2. **During development**: Run `vendor/bin/pint --dirty` frequently
+3. **After changes**: Run relevant tests with `php artisan test --filter="test-name"`
+4. **Frontend changes**: Run `bun run build` if changes don't appear
+5. **Database changes**: Create migrations with `php artisan make:migration`
+
+## Error Handling & Debugging
+
+- **Use Laravel's built-in exception handling**
+- **Validate form data in Livewire actions**
+- **Use proper HTTP status codes** in responses
+- **Log errors appropriately**, don't expose sensitive data
+- **Use try-catch** for external API calls
+
+## Security Considerations
+
+- **Sanitize user input** through validation rules
+- **Use CSRF protection** (built-in with Laravel)
+- **Authorize actions** with gates/policies
+- **Hash passwords** with Laravel's built-in hashing
+- **Never commit `.env` files** or sensitive credentials
+
+## Frontend Integration
+
+- **Use Vite for asset bundling** (configured in `vite.config.js`)
+- **Lucide icons** via `x-dynamic-component` helper
+- **Component props** should have sensible defaults
+- **Loading states** for all async operations
+- **Accessibility**: Include ARIA labels, keyboard navigation
+
+This file serves as a quick reference for maintaining code quality and consistency across the project. When in doubt, check existing implementations and follow established patterns.
+
+===
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
