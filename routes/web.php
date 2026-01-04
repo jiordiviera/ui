@@ -8,4 +8,8 @@ Route::get('/', function () {
 
 Route::get('/docs/{page?}', function ($page = 'installation') {
     return view('docs.show', ['page' => $page]);
-})->name('docs');
+})->name('docs.show');
+
+Route::get('/docs/components/{component?}', function ($component = null) {
+    return view('docs.show', ['page' => $component]);
+})->name('components.show');

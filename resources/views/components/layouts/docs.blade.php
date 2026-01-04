@@ -4,10 +4,10 @@
             <div class="py-6 pr-6 lg:py-8">
                 <h4 class="mb-1 rounded-md px-2 py-1 text-sm font-semibold">Getting Started</h4>
                 <div class="grid grid-flow-row auto-rows-max text-sm">
-                    <a href="/docs/installation" class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 {{ request()->is('docs/installation') ? 'font-medium text-zinc-900 dark:text-zinc-50' : '' }}">
+                    <a href="{{ route("docs.show", ['page' => 'installation']) }}" class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline {{ (request()->routeIs('docs.show') && request()->route('page') === 'installation') ? 'font-medium text-foreground' : 'text-foreground/80' }}">
                         Installation
                     </a>
-                    <a href="/docs/theming" class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 {{ request()->is('docs/theming') ? 'font-medium text-zinc-900 dark:text-zinc-50' : '' }}">
+                    <a href="{{ route("docs.show", ['page' => 'theming']) }}" class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline {{ (request()->routeIs('docs.show') && request()->route('page') === 'theming') ? 'font-medium text-foreground' : 'text-foreground/80' }}">
                         Theming
                     </a>
                 </div>
@@ -36,15 +36,18 @@
                         sort($available);
                     @endphp
 
-                    @foreach ($available as $component)
-                        <a href="/docs/components/{{ str($component)->slug() }}" class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 {{ request()->is('docs/components/' . str($component)->slug()) ? 'font-medium text-zinc-900 dark:text-zinc-50' : '' }}">
-                            {{ $component }}
+@foreach ($available as $component)
+<a
+href="{{ route('components.show', str($component)->slug()) }}"
+class="group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:underline {{  request()->routeIs('components.show') && request()->route('component') === str($component)->slug()->value ? 'font-medium text-foreground': 'text-foreground/80' }}"
+>
+{{ $component }}
                         </a>
                     @endforeach
                 </div>
             </div>
         </aside>
-        
+
         <main class="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
             <div class="mx-auto w-full min-w-0">
                 {{ $slot }}
