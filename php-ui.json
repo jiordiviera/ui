@@ -1,0 +1,12 @@
+{
+    "tailwind": "v4",
+    "theme": {
+        "base": "zinc",
+        "accent": "blue"
+    },
+    "paths": {
+        "components": "app/Livewire/UI",
+        "views": "resources/views/components/ui"
+    },
+    "namespace": "App\\Livewire\\UI"
+}
