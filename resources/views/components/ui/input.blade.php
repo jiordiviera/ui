@@ -79,12 +79,7 @@
         <!-- Left icon -->
         @if($icon)
             <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                @php
-                    $iconComponent = "lucide-{$icon}";
-                @endphp
-
-                <x-dynamic-component 
-                :component="$iconComponent" 
+                <x-lucide-{{ $icon }}
                 @class([
                     'h-5 w-5',
                     'text-destructive' => $hasError,
