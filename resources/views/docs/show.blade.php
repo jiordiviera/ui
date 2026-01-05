@@ -122,9 +122,6 @@
                     <div class="mt-10 space-y-4">
                         <h3 class="font-bold text-xl">Installation</h3>
                         <div class="relative group">
-                            <div
-                                class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
-                            </div>
                             <div class="prose prose-sm dark:prose-invert max-w-none">
                                 <x-markdown-content content="```bash
                                 php-ui add {{ $page }}" />

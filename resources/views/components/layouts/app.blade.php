@@ -9,6 +9,11 @@
     <title>PHP-UI - Shadcn for Laravel Livewire</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:300,400,500,600,700,800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles()
 </head>
@@ -19,7 +24,7 @@
     <header
         class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div class="container mx-auto flex h-14 items-center px-4 md:px-6">
-            <a href="/" class="mr-6 flex items-center space-x-2 font-bold"  wire:navigate>
+            <a href="/" class="mr-6 flex items-center space-x-2 font-bold" wire:navigate>
                 <span class="hidden sm:inline-block">PHP-UI</span>
             </a>
             <nav class="flex items-center space-x-6 text-sm font-medium">
@@ -31,8 +36,7 @@
                     class="transition-colors hover:text-foreground/80 text-foreground/60">GitHub</a>
             </nav>
             <div class="ml-auto flex items-center space-x-4">
-                <button @click="darkMode = !darkMode"
-                    class="rounded-md p-2 hover:bg-input transition-colors"
+                <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-input transition-colors"
                     aria-label="Toggle dark mode">
                     <x-lucide-moon x-show="!darkMode" class="size-5" />
                     <x-lucide-sun x-show="darkMode" class="size-5" />

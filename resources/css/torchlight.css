@@ -20,14 +20,14 @@ pre::-webkit-scrollbar {
  colors extend edge to edge.
 */
 pre code.torchlight {
-    @apply block min-w-max py-6;
+    @apply block min-w-max py-6 font-mono leading-none;
 }
 
 /*
  Horizontal line padding.
 */
 pre code.torchlight .line {
-    @apply px-5;
+    @apply px-5 font-bold text-sm ;
 }
 
 /*
