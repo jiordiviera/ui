@@ -29,68 +29,19 @@
             <!-- Preview Tab -->
             <div x-show="tab === 'preview'" class="space-y-8">
                 @php
-                    $viewName = 'components.ui.' . $page;
-                    // dd($viewName);
                     $componentName = 'ui.' . $page;
-                    $exists = View::exists($viewName);
+                    $componentExists = View::exists('components.ui.' . $page);
+                    $previewExists = View::exists('components.docs.previews.' . $page);
                 @endphp
 
-                @if($exists)
+                @if($componentExists)
                     <!-- Main Preview Area -->
                     <div
                         class="flex items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 p-8 dark:border-zinc-800 dark:bg-zinc-900/50 min-h-[350px]">
-                        {{-- Dynamic Component Examples based on Page --}}
-                        @if($page === 'button')
-                            <div class="flex flex-col gap-8 items-center">
-                                <div class="flex flex-wrap gap-4 justify-center items-center">
-                                    <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName"
-                                        variant="secondary">Secondary</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" variant="ghost">Ghost</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName"
-                                        variant="destructive">Destructive</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" variant="link">Link</x-dynamic-component>
-                                </div>
-                                <div class="flex flex-wrap gap-4 justify-center items-center">
-                                    <x-dynamic-component :component="$componentName" size="sm">Small</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" size="md">Medium</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" size="lg">Large</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" size="icon" icon="plus" />
-                                </div>
-                                <div class="flex flex-wrap gap-4 justify-center items-center">
-                                    <x-dynamic-component :component="$componentName" icon="mail">Login with
-                                        Email</x-dynamic-component>
-                                    <x-dynamic-component :component="$componentName" loading>Loading</x-dynamic-component>
-                                </div>
-                            </div>
-                        @elseif($page === 'badge')
-                            <div class="flex flex-wrap gap-4 justify-center">
-                                <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
-                                <x-dynamic-component :component="$componentName" variant="secondary">Secondary</x-dynamic-component>
-                                <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
-                                <x-dynamic-component :component="$componentName"
-                                    variant="destructive">Destructive</x-dynamic-component>
-                            </div>
-                        @elseif($page === 'input')
-                            <div class="w-full max-w-sm space-y-4">
-                                <x-dynamic-component :component="$componentName" label="Email" placeholder="Email" type="email" />
-                                <x-dynamic-component :component="$componentName" label="With Icon" icon="mail"
-                                    placeholder="Email" />
-                                <x-dynamic-component :component="$componentName" label="Disabled" disabled placeholder="Disabled" />
-                            </div>
-                        @elseif($page === 'alert')
-                            <div class="w-full max-w-2xl space-y-4">
-                                <x-dynamic-component :component="$componentName" title="Heads up!" variant="default">
-                                    You can add components to your app using the cli.
-                                </x-dynamic-component>
-                                <x-dynamic-component :component="$componentName" title="Error" variant="destructive"
-                                    icon="alert-circle">
-                                    Your session has expired. Please log in again.
-                                </x-dynamic-component>
-                            </div>
+                        @if($previewExists)
+                            <x-dynamic-component :component="'docs.previews.' . $page" />
                         @else
-                            <!-- Default Generic Preview -->
+                            {{-- Fallback générique si pas de preview dédiée --}}
                             <div class="text-center w-full min-h-[150px] flex items-center justify-center">
                                 <x-dynamic-component :component="$componentName">
                                     Sample {{ str($page)->title() }}
