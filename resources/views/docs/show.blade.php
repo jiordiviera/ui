@@ -81,47 +81,9 @@
                 </div>
             </div>
         @elseif($page === 'theming')
-            <!-- Theming Page Content (Keep existing content) -->
-            <div class="space-y-10">
-                <section class="space-y-4">
-                    <h2 class="text-2xl font-bold tracking-tight">Introduction</h2>
-                    <p class="text-zinc-500 dark:text-zinc-400">
-                        PHP-UI uses Tailwind CSS variables for styling. This means you can easily customize the look and
-                        feel of your application by updating your CSS variables.
-                    </p>
-                </section>
-                <!-- ... (Rest of theming content) ... -->
-                <section class="space-y-4">
-                    <h2 class="text-2xl font-bold tracking-tight">Tailwind v4 Configuration</h2>
-                    <x-markdown-content content="```css
-                        @theme { --color-primary: var(--color-blue-600); }" />
-                </section>
-            </div>
+            <x-docs.pages.theming />
         @else
-            <!-- Installation Guide (Keep existing content) -->
-            <div class="space-y-10">
-                <section class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <x-ui.badge variant="secondary"
-                            class="rounded-full h-6 w-6 flex items-center justify-center p-0">1</x-ui.badge>
-                        <h2 class="text-2xl font-bold tracking-tight">Requirement</h2>
-                    </div>
-                    <ul class="list-disc list-inside space-y-2 text-zinc-500 dark:text-zinc-400 ml-4">
-                        <li>Laravel 10.0+</li>
-                        <li>PHP 8.2+</li>
-                        <li>Tailwind CSS v4</li>
-                    </ul>
-                </section>
-                <section class="space-y-4">
-                    <div class="flex items-center gap-2">
-                        <x-ui.badge variant="secondary"
-                            class="rounded-full h-6 w-6 flex items-center justify-center p-0">2</x-ui.badge>
-                        <h2 class="text-2xl font-bold tracking-tight">Install</h2>
-                    </div>
-                    <x-markdown-content content="```bash
-                        composer global require jiordiviera/php-ui" />
-                </section>
-            </div>
+            <x-docs.pages.installation />
         @endif
     </div>
 </x-layouts.docs>
