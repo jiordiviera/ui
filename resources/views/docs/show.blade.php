@@ -16,118 +16,119 @@
 
     <div class="pb-12 pt-8" x-data="{ tab: 'preview' }">
         @if(request()->is('docs/components/*'))
-                    <!-- Tabs Header -->
-                    <div class="flex items-center space-x-4 border-b border-zinc-200 dark:border-zinc-800 mb-6">
-                        <button @click="tab = 'preview'"
-                            :class="tab === 'preview' ? 'border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50' : 'border-transparent text-zinc-500'"
-                            class="pb-2 text-sm font-medium border-b-2 transition-colors">Preview</button>
-                        <button @click="tab = 'code'"
-                            :class="tab === 'code' ? 'border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50' : 'border-transparent text-zinc-500'"
-                            class="pb-2 text-sm font-medium border-b-2 transition-colors">Code</button>
-                    </div>
+            <!-- Tabs Header -->
+            <div class="flex items-center space-x-4 border-b border-zinc-200 dark:border-zinc-800 mb-6">
+                <button @click="tab = 'preview'"
+                    :class="tab === 'preview' ? 'border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50' : 'border-transparent text-zinc-500'"
+                    class="pb-2 text-sm font-medium border-b-2 transition-colors">Preview</button>
+                <button @click="tab = 'code'"
+                    :class="tab === 'code' ? 'border-zinc-900 dark:border-zinc-50 text-zinc-900 dark:text-zinc-50' : 'border-transparent text-zinc-500'"
+                    class="pb-2 text-sm font-medium border-b-2 transition-colors">Code</button>
+            </div>
 
-                    <!-- Preview Tab -->
-                    <div x-show="tab === 'preview'" class="space-y-8">
-                        @php
-                            $viewName = 'components.ui.' . $page;
-                            // dd($viewName);
-                            $componentName = 'ui.' . $page;
-                            $exists = View::exists($viewName);
-                        @endphp
+            <!-- Preview Tab -->
+            <div x-show="tab === 'preview'" class="space-y-8">
+                @php
+                    $viewName = 'components.ui.' . $page;
+                    // dd($viewName);
+                    $componentName = 'ui.' . $page;
+                    $exists = View::exists($viewName);
+                @endphp
 
-                        @if($exists)
-                            <!-- Main Preview Area -->
-                            <div
-                                class="flex items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 p-8 dark:border-zinc-800 dark:bg-zinc-900/50 min-h-[350px]">
-                                {{-- Dynamic Component Examples based on Page --}}
-                                @if($page === 'button')
-                                    <div class="flex flex-col gap-8 items-center">
-                                        <div class="flex flex-wrap gap-4 justify-center items-center">
-                                            <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName"
-                                                variant="secondary">Secondary</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" variant="ghost">Ghost</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName"
-                                                variant="destructive">Destructive</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" variant="link">Link</x-dynamic-component>
-                                        </div>
-                                        <div class="flex flex-wrap gap-4 justify-center items-center">
-                                            <x-dynamic-component :component="$componentName" size="sm">Small</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" size="md">Medium</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" size="lg">Large</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" size="icon" icon="plus" />
-                                        </div>
-                                        <div class="flex flex-wrap gap-4 justify-center items-center">
-                                            <x-dynamic-component :component="$componentName" icon="mail">Login with
-                                                Email</x-dynamic-component>
-                                            <x-dynamic-component :component="$componentName" loading>Loading</x-dynamic-component>
-                                        </div>
-                                    </div>
-                                @elseif($page === 'badge')
-                                    <div class="flex flex-wrap gap-4 justify-center">
-                                        <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
-                                        <x-dynamic-component :component="$componentName" variant="secondary">Secondary</x-dynamic-component>
-                                        <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
-                                        <x-dynamic-component :component="$componentName"
-                                            variant="destructive">Destructive</x-dynamic-component>
-                                    </div>
-                                @elseif($page === 'input')
-                                    <div class="w-full max-w-sm space-y-4">
-                                        <x-dynamic-component :component="$componentName" label="Email" placeholder="Email" type="email" />
-                                        <x-dynamic-component :component="$componentName" label="With Icon" icon="mail"
-                                            placeholder="Email" />
-                                        <x-dynamic-component :component="$componentName" label="Disabled" disabled placeholder="Disabled" />
-                                    </div>
-                                @elseif($page === 'alert')
-                                    <div class="w-full max-w-2xl space-y-4">
-                                        <x-dynamic-component :component="$componentName" title="Heads up!" variant="default">
-                                            You can add components to your app using the cli.
-                                        </x-dynamic-component>
-                                        <x-dynamic-component :component="$componentName" title="Error" variant="destructive"
-                                            icon="alert-circle">
-                                            Your session has expired. Please log in again.
-                                        </x-dynamic-component>
-                                    </div>
-                                @else
-                                    <!-- Default Generic Preview -->
-                                    <div class="text-center">
-                                        <x-dynamic-component :component="$componentName">
-                                            Sample {{ str($page)->title() }}
-                                        </x-dynamic-component>
-                                    </div>
-                                @endif
+                @if($exists)
+                    <!-- Main Preview Area -->
+                    <div
+                        class="flex items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 p-8 dark:border-zinc-800 dark:bg-zinc-900/50 min-h-[350px]">
+                        {{-- Dynamic Component Examples based on Page --}}
+                        @if($page === 'button')
+                            <div class="flex flex-col gap-8 items-center">
+                                <div class="flex flex-wrap gap-4 justify-center items-center">
+                                    <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName"
+                                        variant="secondary">Secondary</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" variant="ghost">Ghost</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName"
+                                        variant="destructive">Destructive</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" variant="link">Link</x-dynamic-component>
+                                </div>
+                                <div class="flex flex-wrap gap-4 justify-center items-center">
+                                    <x-dynamic-component :component="$componentName" size="sm">Small</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" size="md">Medium</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" size="lg">Large</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" size="icon" icon="plus" />
+                                </div>
+                                <div class="flex flex-wrap gap-4 justify-center items-center">
+                                    <x-dynamic-component :component="$componentName" icon="mail">Login with
+                                        Email</x-dynamic-component>
+                                    <x-dynamic-component :component="$componentName" loading>Loading</x-dynamic-component>
+                                </div>
+                            </div>
+                        @elseif($page === 'badge')
+                            <div class="flex flex-wrap gap-4 justify-center">
+                                <x-dynamic-component :component="$componentName" variant="primary">Primary</x-dynamic-component>
+                                <x-dynamic-component :component="$componentName" variant="secondary">Secondary</x-dynamic-component>
+                                <x-dynamic-component :component="$componentName" variant="outline">Outline</x-dynamic-component>
+                                <x-dynamic-component :component="$componentName"
+                                    variant="destructive">Destructive</x-dynamic-component>
+                            </div>
+                        @elseif($page === 'input')
+                            <div class="w-full max-w-sm space-y-4">
+                                <x-dynamic-component :component="$componentName" label="Email" placeholder="Email" type="email" />
+                                <x-dynamic-component :component="$componentName" label="With Icon" icon="mail"
+                                    placeholder="Email" />
+                                <x-dynamic-component :component="$componentName" label="Disabled" disabled placeholder="Disabled" />
+                            </div>
+                        @elseif($page === 'alert')
+                            <div class="w-full max-w-2xl space-y-4">
+                                <x-dynamic-component :component="$componentName" title="Heads up!" variant="default">
+                                    You can add components to your app using the cli.
+                                </x-dynamic-component>
+                                <x-dynamic-component :component="$componentName" title="Error" variant="destructive"
+                                    icon="alert-circle">
+                                    Your session has expired. Please log in again.
+                                </x-dynamic-component>
                             </div>
                         @else
-                            <div
-                                class="flex items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 p-8 dark:border-zinc-800 dark:bg-zinc-900/50 min-h-[200px]">
-                                <div class="text-center space-y-3">
-                                    <p class="text-sm text-zinc-500">Component <code>{{ $page }}</code> not found in
-                                        <code>resources/views/components/ui/</code></p>
-                                    <p class="text-xs text-zinc-400">Run <code>php-ui add {{ $page }}</code> to see it here.</p>
-                                </div>
+                            <!-- Default Generic Preview -->
+                            <div class="text-center w-full min-h-[150px] flex items-center justify-center">
+                                <x-dynamic-component :component="$componentName">
+                                    Sample {{ str($page)->title() }}
+                                </x-dynamic-component>
                             </div>
                         @endif
                     </div>
-
-                    <!-- Code Tab -->
-                    <div x-show="tab === 'code'" class="relative">
-                        <x-markdown-content content="```blade
-            <x-ui.{{ $page }}>
-                Sample Content
-            </x-ui.{{ $page }}>" />
-                    </div>
-
-                    <!-- Installation Command -->
-                    <div class="mt-10 space-y-4">
-                        <h3 class="font-bold text-xl">Installation</h3>
-                        <div class="relative group">
-                            <div class="prose prose-sm dark:prose-invert max-w-none">
-                                <x-markdown-content content="```bash
-                                php-ui add {{ $page }}" />
-                            </div>
+                @else
+                    <div
+                        class="flex items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 p-8 dark:border-zinc-800 dark:bg-zinc-900/50 min-h-[200px]">
+                        <div class="text-center space-y-3">
+                            <p class="text-sm text-zinc-500">Component <code>{{ $page }}</code> not found in
+                                <code>resources/views/components/ui/</code>
+                            </p>
+                            <p class="text-xs text-zinc-400">Run <code>php-ui add {{ $page }}</code> to see it here.</p>
                         </div>
                     </div>
+                @endif
+            </div>
+
+            <!-- Code Tab -->
+            <div x-show="tab === 'code'" class="relative">
+                <x-markdown-content content="```blade
+                <x-ui.{{ $page }}>
+                    Sample Content
+                </x-ui.{{ $page }}>" />
+            </div>
+
+            <!-- Installation Command -->
+            <div class="mt-10 space-y-4">
+                <h3 class="font-bold text-xl">Installation</h3>
+                <div class="relative group">
+                    <div class="prose prose-sm dark:prose-invert max-w-none">
+                        <x-markdown-content content="```bash
+                                    php-ui add {{ $page }}" />
+                    </div>
+                </div>
+            </div>
         @elseif($page === 'theming')
             <!-- Theming Page Content (Keep existing content) -->
             <div class="space-y-10">
@@ -142,7 +143,7 @@
                 <section class="space-y-4">
                     <h2 class="text-2xl font-bold tracking-tight">Tailwind v4 Configuration</h2>
                     <x-markdown-content content="```css
-                    @theme { --color-primary: var(--color-blue-600); }" />
+                        @theme { --color-primary: var(--color-blue-600); }" />
                 </section>
             </div>
         @else
@@ -167,7 +168,7 @@
                         <h2 class="text-2xl font-bold tracking-tight">Install</h2>
                     </div>
                     <x-markdown-content content="```bash
-                    composer global require jiordiviera/php-ui" />
+                        composer global require jiordiviera/php-ui" />
                 </section>
             </div>
         @endif
