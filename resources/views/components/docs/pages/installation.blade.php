@@ -8,10 +8,10 @@
             <h2 class="text-2xl font-bold tracking-tight">Requirements</h2>
         </div>
         <div class="ml-11 space-y-4">
-            <p class="text-zinc-500 dark:text-zinc-400">
+            <p>
                 Make sure your environment meets the following requirements before installing PHP UI.
             </p>
-            <ul class="list-disc ml-6 text-zinc-500 dark:text-zinc-400 space-y-1">
+            <ul class="list-disc ml-6 space-y-1">
                 <li><a href="https://www.php.net/?utm_source=php-ui-docs" target="_blank"
                         class="underline text-primary">PHP</a> 8.2 or higher</li>
                 <li><a href="https://laravel.com/docs?utm_source=php-ui-docs" target="_blank"
@@ -31,7 +31,7 @@
             <h2 class="text-2xl font-bold tracking-tight">Start a Laravel Project</h2>
         </div>
         <div class="ml-11 space-y-4">
-            <p class="text-zinc-500 dark:text-zinc-400">
+            <p>
                 PHP UI must be installed inside an existing Laravel application. Create one if you do not already have
                 it:
             </p>
@@ -56,8 +56,8 @@ cd my-app
 
             {{-- Local Install --}}
             <div class="space-y-2">
-                <h3 class="font-semibold text-foreground">Option A Install locally dev mode</h3>
-                <p class="text-zinc-500 dark:text-zinc-400">
+                <h3 class="font-semibold">Option A Install locally dev mode</h3>
+                <p>
                     Adds PHP UI to your project and uses the local CLI binary.
                 </p>
                 <x-markdown-content content="```bash
@@ -67,8 +67,8 @@ composer require jiordiviera/php-ui --dev
 
             {{-- Global CLI --}}
             <div class="space-y-2">
-                <h3 class="font-semibold text-foreground">Option B Install CLI globally</h3>
-                <p class="text-zinc-500 dark:text-zinc-400">
+                <h3 class="font-semibold">Option B Install CLI globally</h3>
+                <p>
                     Gives access to the global <code>php-ui</code> command from any directory.
                 </p>
                 <x-markdown-content content="```bash
@@ -89,7 +89,7 @@ composer global require jiordiviera/php-ui
             <h2 class="text-2xl font-bold tracking-tight">Initialize PHP UI</h2>
         </div>
         <div class="ml-11 space-y-4">
-            <p class="text-zinc-500 dark:text-zinc-400">
+            <p>
                 Run the init command inside your Laravel project.
             </p>
             <x-markdown-content content="```bash
@@ -99,10 +99,10 @@ composer global require jiordiviera/php-ui
 # If installed globally
 php-ui init
 ```" />
-            <p class="text-zinc-500 dark:text-zinc-400">
+            <p>
                 This command will:
             </p>
-            <ul class="list-none space-y-2 text-zinc-500 dark:text-zinc-400">
+            <ul class="list-none space-y-2">
                 <li class="flex items-center gap-2"><x-lucide-check class="size-4 text-emerald-500" /> Create
                     <code>php-ui.json</code></li>
                 <li class="flex items-center gap-2"><x-lucide-check class="size-4 text-emerald-500" /> Create component
@@ -123,7 +123,7 @@ php-ui init
             <h2 class="text-2xl font-bold tracking-tight">Add Components</h2>
         </div>
         <div class="ml-11 space-y-4">
-            <p class="text-zinc-500 dark:text-zinc-400">
+            <p>
                 Add UI components to your project.
             </p>
             <x-markdown-content content="```bash
@@ -150,14 +150,23 @@ php-ui add --all
             <h2 class="text-2xl font-bold tracking-tight">Use Components</h2>
         </div>
         <div class="ml-11 space-y-4">
-            <p class="text-zinc-500 dark:text-zinc-400">
-                Use components in Blade templates with the <code>x-ui.</code> prefix.
+            <p class="text-muted-foreground">
+                Use components in Blade templates with the <code class="px-1.5 py-0.5 rounded bg-muted text-sm">x-ui.</code> prefix.
             </p>
-            <x-markdown-content content="```blade
-<x-ui.button variant='primary'>Click me</x-ui.button>
-<x-ui.input label='Email' type='email' />
-<x-ui.alert variant='destructive' title='Error'>Something went wrong</x-ui.alert>
-```" />
+            @php
+            $usageCode = <<<'CODE'
+```blade
+<x-ui.button variant="primary">Click me</x-ui.button>
+
+<x-ui.input label="Email" type="email" />
+
+<x-ui.alert variant="destructive" title="Error">
+    Something went wrong
+</x-ui.alert>
+```
+CODE;
+            @endphp
+            <x-markdown-content :content="$usageCode" />
         </div>
     </section>
 
@@ -171,12 +180,12 @@ php-ui add --all
             <a href="{{ route('docs.show', 'theming') }}"
                 class="group p-6 rounded-xl border hover:border-primary/50 transition-colors">
                 <h3 class="font-semibold group-hover:text-primary">Theming</h3>
-                <p class="text-sm text-zinc-500 dark:text-zinc-400">Customize tokens colors and fonts.</p>
+                <p class="text-sm">Customize tokens colors and fonts.</p>
             </a>
             <a href="{{ route('docs.show', 'components/button') }}"
                 class="group p-6 rounded-xl border hover:border-primary/50 transition-colors">
                 <h3 class="font-semibold group-hover:text-primary">Components</h3>
-                <p class="text-sm text-zinc-500 dark:text-zinc-400">Browse all components.</p>
+                <p class="text-sm">Browse all components.</p>
             </a>
         </div>
     </section>

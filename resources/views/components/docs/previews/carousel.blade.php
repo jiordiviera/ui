@@ -34,7 +34,7 @@
         <p class="text-sm font-medium text-zinc-500 dark:text-zinc-400">Square (1:1)</p>
         <div class="max-w-sm mx-auto">
             <x-ui.carousel aspectRatio="1/1" :images="[
-        'https://images.unsplash.com/photo-1518173946687-a4c036bc8df0?w=400&h=400&fit=crop',
+        'https://images.unsplash.com/photo-1471899236350-e3016bf1e69e?w=400&h=400&fit=crop',
         'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop',
     ]" />
         </div>
