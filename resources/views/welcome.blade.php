@@ -86,9 +86,13 @@
                                 ✓ Created resources/views/components/ui/alert.blade.php
                             </div>
                         </div>
-                        <div class="bg-muted/50 border border-dashed border-border rounded-lg p-8 text-center">
-                            <x-lucide-image class="size-12 text-muted-foreground mx-auto mb-4" />
-                            <p class="text-sm text-muted-foreground">Demo video coming soon</p>
+                        <div class="relative">
+                            <img src="{{ asset('images/demo-video.svg') }}" alt="Demo video showing PHP-UI installation" class="w-full rounded-lg border border-border shadow-lg">
+                            <div class="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
+                                <div class="bg-white/90 rounded-full p-4 shadow-lg">
+                                    <x-lucide-play class="size-8 text-primary" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -105,6 +109,9 @@
                                 ├── input.blade.php<br>
                                 └── alert.blade.php
                             </div>
+                        </div>
+                        <div class="relative">
+                            <img src="{{ asset('images/ui-preview.svg') }}" alt="UI components preview" class="w-full rounded-lg border border-border shadow-lg">
                         </div>
                         <p class="text-sm text-muted-foreground">
                             Components are added to your project. Edit, customize, or delete them as needed.
@@ -137,9 +144,14 @@
                             <span>resources/views/components/ui/button.blade.php</span>
                         </div>
                         <div class="bg-card border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto">
-                            <pre class="text-foreground"><code>&lt;button @{{ $attributes->merge(['class' => 'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4']) }}>
-    @{{ $slot }}
-&lt;/button></code></pre>
+                            @php
+                            $buttonCode = '```blade
+<button {{ $attributes->merge([\'class\' => \'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4\']) }}>
+    {{ $slot }}
+</button>
+```';
+                            @endphp
+                            <pre class="text-foreground"><x-markdown-content :content="$buttonCode" :copyable="false" /></pre>
                         </div>
                     </div>
 
