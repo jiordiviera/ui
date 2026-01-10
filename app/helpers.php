@@ -84,3 +84,23 @@ if (! function_exists('get_resource_content')) {
         return file_get_contents($fullPath);
     }
 }
+
+if (! function_exists('is_docs_page_active')) {
+    /**
+     * Check if a docs page is active
+     */
+    function is_docs_page_active(string $page): bool
+    {
+        return request()->routeIs('docs.show') && request()->route('page') === $page;
+    }
+}
+
+if (! function_exists('is_component_active')) {
+    /**
+     * Check if a component page is active
+     */
+    function is_component_active(string $component): bool
+    {
+        return request()->routeIs('components.show') && request()->route('component') === str($component)->slug()->value;
+    }
+}

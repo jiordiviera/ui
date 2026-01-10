@@ -69,19 +69,11 @@
         @if($disabled) aria-disabled="true" @endif
     >
         @if($loading)
-            <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
+            <x-dynamic-component component="lucide-loader-circle" class="{{ $iconSize }} animate-spin" />
         @elseif($icon && !$iconOnly)
-            @if($lucide)
-                <x-lucide-{{ $icon }} class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-            @endif
+            <x-dynamic-component :component=" $lucide ? 'lucide-' . $icon : $icon" class="{{ $iconSize }}" />
         @elseif($icon && $iconOnly)
-            @if($lucide)
-                <x-lucide-{{ $icon }} class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-            @endif
+            <x-dynamic-component :component=" $lucide ? 'lucide-' . $icon : $icon" class="{{ $iconSize }}" />
         @endif
 
         @if(!$iconOnly)
@@ -89,11 +81,7 @@
         @endif
 
         @if($iconRight && !$iconOnly)
-            @if($lucide)
-                <x-lucide-{{ $iconRight }} class="{{ $iconSize }}" />
-            @else
-                <x-dynamic-component :component="$iconRight" class="{{ $iconSize }}" />
-            @endif
+            <x-dynamic-component :component=" $lucide ? 'lucide-' . $iconRight :  $iconRight" class="{{ $iconSize }}" />
         @endif
     </a>
 @else
@@ -106,26 +94,34 @@
     >
         <!-- Loading spinner - only shown during wire:loading or when loading prop is true -->
         <span wire:loading>
-            <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
+            <x-dynamic-component
+                component="lucide-loader-circle"
+                class="{{ $iconSize }} animate-spin"
+            />
         </span>
         @if($loading)
             <span>
-                <x-lucide-loader-circle class="{{ $iconSize }} animate-spin" />
+                <x-dynamic-component
+                    component="lucide-loader-circle"
+                    class="{{ $iconSize }} animate-spin"
+                />
             </span>
         @endif
 
         <!-- Normal left icon - hidden during loading -->
         @if($icon && !$iconOnly)
             <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                @if($lucide)
-                    <x-lucide-{{ $icon }} class="{{ $iconSize }}" />
-                @else
-                    <x-dynamic-component :component="$icon" class="{{ $iconSize }}" />
-                @endif
+                <x-dynamic-component
+                    :component=" $lucide ? 'lucide-' . $icon : $icon"
+                    class="{{ $iconSize }}"
+                />
             </span>
         @elseif($icon && $iconOnly)
             <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                <x-lucide-{{ $icon }} class="{{ $iconSize }}" />
+                <x-dynamic-component
+                    :component="'lucide-' . $icon"
+                    class="{{ $iconSize }}"
+                />
             </span>
         @endif
 
@@ -139,11 +135,10 @@
         <!-- Right icon - hidden during loading -->
         @if($iconRight && !$iconOnly)
             <span wire:loading.remove @if($loading) style="display: none;" @endif>
-                @if($lucide)
-                    <x-lucide-{{ $iconRight }} class="{{ $iconSize }}" />
-                @else
-                    <x-dynamic-component :component="$iconRight" class="{{ $iconSize }}" />
-                @endif
+                <x-dynamic-component
+                    :component="'lucide-' . $iconRight"
+                    class="{{ $iconSize }}"
+                />
             </span>
         @endif
 
