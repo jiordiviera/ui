@@ -74,7 +74,7 @@ composer require jiordiviera/php-ui --dev
                 <x-markdown-content content="```bash
 composer global require jiordiviera/php-ui
 ```" />
-                <x-ui.alert variant="default" title="Note" icon="info">
+                <x-ui.alert variant="info" title="Note" icon="info">
                     Make sure your global Composer <code>bin</code> directory is in your system PATH.
                 </x-ui.alert>
             </div>

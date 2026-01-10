@@ -19,8 +19,8 @@
 
 @php
     $inputId = $id ?? $name ?? 'input-' . Str::random(8);
-    $hasError = !empty($error) || $errors->has($name);
-    $errorMessage = $error ?? ($name ? $errors->first($name) : null);
+    $hasError = !empty($error) || (isset($errors) && $errors->has($name));
+    $errorMessage = $error ?? (isset($errors) && $name ? $errors->first($name) : null);
 
     // Size classes
     $sizeClasses = match($size) {

@@ -1,24 +1,74 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full antialiased" x-data="{
-        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full antialiased">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PHP-UI - Shadcn for Laravel Livewire</title>
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:300,400,500,600,700,800&display=swap" rel="stylesheet" />
+
+    <!-- SEO Meta Tags -->
+    <title>PHP-UI - 50+ Beautiful Blade Components for Laravel | Open Source</title>
+    <meta name="description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours. No npm packages, no build complexity.">
+    <meta name="keywords" content="Laravel, Blade components, UI components, Tailwind CSS, Livewire, open source, PHP, web development">
+    <meta name="author" content="Jiordi Viera">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:title" content="PHP-UI - 50+ Beautiful Blade Components for Laravel">
+    <meta property="og:description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
+    <meta property="og:image" content="{{ url('/images/og-image.png') }}">
+    <meta property="og:site_name" content="PHP-UI">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url('/') }}">
+    <meta property="twitter:title" content="PHP-UI - 50+ Beautiful Blade Components for Laravel">
+    <meta property="twitter:description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
+    <meta property="twitter:image" content="{{ url('/images/og-image.png') }}">
+    <meta property="twitter:creator" content="@jiordiviera">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    @verbatim
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "PHP-UI",
+        "description": "50+ beautifully crafted Blade components for Laravel",
+        "url": "{{ url('/') }}",
+        "author": {
+            "@type": "Person",
+            "name": "Jiordi Viera",
+            "url": "https://jiordiviera.me"
+        },
+        "license": "https://opensource.org/licenses/MIT",
+        "programmingLanguage": "PHP",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "keywords": "Laravel, Blade, UI components, Tailwind CSS, Livewire, open source"
+    }
+    @endverbatim
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles()
 </head>
 
-<body class="min-h-screen scroll-smooth bg-background font-sans text-foreground">
+<body class="min-h-screen scroll-smooth bg-background font-sans text-foreground" x-data="{
+        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+        ...scrollAnimations()
+    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val)); init()" :class="{ 'dark': darkMode }">
 
     <!-- Navbar -->
     <header
@@ -65,6 +115,41 @@
         </div>
     </footer>
     @livewireScripts()
+
+    <!-- Scroll Animations Script -->
+    <script>
+        function scrollAnimations() {
+            return {
+                init() {
+                    // Intersection Observer for fade-in animations
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animate-fade-in');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+
+                    // Observe all sections with animation
+                    document.querySelectorAll('section').forEach(section => {
+                        section.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out');
+                        observer.observe(section);
+                    });
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .animate-fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
 </body>
 
 </html>

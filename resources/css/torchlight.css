@@ -3,14 +3,17 @@
  overflow-x-auto is recommended.
 */
 pre {
-    @apply my-4 overflow-auto rounded-lg max-h-[500px];
-    padding: 0 !important;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+  @apply p-0 my-4 overflow-x-auto overflow-y-auto rounded-lg max-h-175;
 }
 
-pre::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+/* Add ring border in light mode for better visibility */
+pre {
+  @apply ring-1 ring-gray-200;
+}
+
+/* Remove ring in dark mode (background is already visible) */
+:where(.dark, .dark *) pre {
+  @apply ring-0;
 }
 
 /*
@@ -20,14 +23,14 @@ pre::-webkit-scrollbar {
  colors extend edge to edge.
 */
 pre code.torchlight {
-    @apply block min-w-max py-6 font-mono leading-none;
+  @apply block min-w-max py-6;
 }
 
 /*
  Horizontal line padding.
 */
 pre code.torchlight .line {
-    @apply px-5 font-bold text-sm ;
+  @apply px-5;
 }
 
 /*
@@ -36,64 +39,88 @@ pre code.torchlight .line {
 */
 pre code.torchlight .line-number,
 pre code.torchlight .summary-caret {
-    @apply mr-4;
-    user-select: none;
+  @apply mr-4;
+  user-select: none;
 }
 
 .torchlight.has-focus-lines .line:not(.line-focus) {
-    transition:
-        filter 0.35s,
-        opacity 0.35s;
-    filter: blur(0.095rem);
-    opacity: 0.65;
+  transition:
+    filter 0.35s,
+    opacity 0.35s;
+  filter: blur(0.095rem);
+  opacity: 0.65;
 }
 
 .torchlight.has-focus-lines:hover .line:not(.line-focus) {
-    filter: blur(0px);
-    opacity: 1;
+  filter: blur(0px);
+  opacity: 1;
 }
 
 .torchlight summary:focus {
-    outline: none;
+  outline: none;
 }
 
 /* Hide the default markers, as we provide our own */
 .torchlight details > summary::marker,
 .torchlight details > summary::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 .torchlight details .summary-caret::after {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 /* Add spaces to keep everything aligned */
 .torchlight .summary-caret-empty::after,
 .torchlight details .summary-caret-middle::after,
 .torchlight details .summary-caret-end::after {
-    content: ' ';
+  content: " ";
 }
 
 /* Show a minus sign when the block is open. */
 .torchlight details[open] .summary-caret-start::after {
-    content: '-';
+  content: "-";
 }
 
 /* And a plus sign when the block is closed. */
 .torchlight details:not([open]) .summary-caret-start::after {
-    content: '+';
+  content: "+";
 }
 
 /* Hide the [...] indicator when open. */
 .torchlight details[open] .summary-hide-when-open {
-    display: none;
+  display: none;
 }
 
 /* Show the [...] indicator when closed. */
 .torchlight details:not([open]) .summary-hide-when-open {
-    display: initial;
+  display: initial;
 }
 
 .code-block .copyBtn {
-    @apply absolute top-2 right-2 outline-none;
+  @apply absolute right-2 top-2 outline-none;
+}
+
+/*
+  Dual theme support for dark/light mode.
+  When using multiple themes, Torchlight renders both code blocks.
+  The first code element is the dark theme, the second is the light theme.
+*/
+
+/* By default (light mode, no .dark class), show light theme and hide dark theme */
+pre code.torchlight:nth-of-type(1) {
+  display: none;
+}
+
+pre code.torchlight:nth-of-type(2) {
+  display: block;
+}
+
+/* In dark mode (.dark class present), show dark theme and hide light theme */
+:where(.dark, .dark *) pre code.torchlight:nth-of-type(1) {
+  display: block;
+}
+
+:where(.dark, .dark *) pre code.torchlight:nth-of-type(2) {
+  display: none;
 }
