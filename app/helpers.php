@@ -104,3 +104,87 @@ if (! function_exists('is_component_active')) {
         return request()->routeIs('components.show') && request()->route('component') === str($component)->slug()->value;
     }
 }
+
+if (! function_exists('get_component_items')) {
+    /**
+     * Get the list of component names for navigation
+     */
+    function get_component_items(): array
+    {
+        return array_keys(config('docs.navigation.components.library', []));
+    }
+}
+
+if (! function_exists('get_component_description')) {
+    /**
+     * Get description for a specific component
+     */
+    function get_component_description(string $component): string
+    {
+        return config('docs.navigation.components.library.' . $component . '.description', 'Beautiful, accessible component');
+    }
+}
+
+if (! function_exists('get_component_categories')) {
+    /**
+     * Get components organized by categories
+     */
+    function get_component_categories(): array
+    {
+        $library = config('docs.navigation.components.library', []);
+        $categories = [];
+
+        foreach ($library as $component => $data) {
+            $category = $data['category'] ?? 'Other';
+            $categories[$category][] = $component;
+        }
+
+        // Sort categories and components within each category
+        ksort($categories);
+        foreach ($categories as $category => $components) {
+            sort($categories[$category]);
+        }
+
+        return $categories;
+    }
+}
+
+if (! function_exists('get_docs_navigation')) {
+    /**
+     * Get the complete docs navigation structure
+     */
+    function get_docs_navigation(): array
+    {
+        return config('docs.navigation', []);
+    }
+}
+
+if (! function_exists('get_getting_started_pages')) {
+    /**
+     * Get getting started pages
+     */
+    function get_getting_started_pages(): array
+    {
+        return config('docs.navigation.getting_started.pages', []);
+    }
+}
+
+if (! function_exists('get_getting_started_title')) {
+    /**
+     * Get getting started section title
+     */
+    function get_getting_started_title(): string
+    {
+        return config('docs.navigation.getting_started.title', 'Getting Started');
+    }
+}
+
+if (! function_exists('get_components_title')) {
+    /**
+     * Get components section title
+     */
+    function get_components_title(): string
+    {
+        return config('docs.navigation.components.title', 'Components');
+    }
+}

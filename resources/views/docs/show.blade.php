@@ -3,11 +3,15 @@
         <h1 class="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
             {{ str($page)->replace('-', ' ')->title() }}
         </h1>
-        <p class="text-lg text-zinc-500 dark:text-zinc-400">
+        <p class="text-lg">
             @if(request()->is('docs/components/*'))
                 Scaffold a {{ str($page)->replace('-', ' ') }} component into your project.
             @elseif($page === 'theming')
                 Customize the look and feel of your components with CSS variables.
+            @elseif($page === 'introduction')
+                Welcome to PHP-UI, the shadcn/ui equivalent for Laravel developers.
+            @elseif($page === 'components')
+                Explore our collection of beautiful, accessible components.
             @else
                 How to install and configure PHP-UI in your Laravel project.
             @endif
@@ -82,6 +86,10 @@
             </div>
         @elseif($page === 'theming')
             <x-docs.pages.theming />
+        @elseif($page === 'introduction')
+            <x-docs.pages.introduction />
+        @elseif($page === 'components')
+            <x-docs.pages.components />
         @else
             <x-docs.pages.installation />
         @endif
