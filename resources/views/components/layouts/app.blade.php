@@ -66,34 +66,31 @@
 </head>
 
 <body class="min-h-screen scroll-smooth bg-background font-sans text-foreground" x-data="{
-        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
-        ...scrollAnimations()
-    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val)); init()" :class="{ 'dark': darkMode }">
+        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }">
 
     <!-- Navbar -->
     <header
         class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div class="container mx-auto flex h-14 items-center px-4 md:px-6">
             <a href="/" class="mr-6 flex items-center space-x-2 font-bold" wire:navigate>
-                <span class="hidden sm:inline-block">PHP-UI</span>
+                <span class="inline-block">PHP-UI</span>
             </a>
-            <nav class="flex items-center space-x-6 text-sm font-medium">
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
                 <a href="/docs/installation" wire:navigate
-                    class="transition-colors hover:text-foreground/80 text-foreground/60">Docs</a>
+                    class="transition-colors hover:text-foreground text-muted-foreground">Docs</a>
                 <a href="/docs/components" wire:navigate
-                    class="transition-colors hover:text-foreground/80 text-foreground/60">Components</a>
-                <a href="https://github.com/jiordiviera/php-ui" target="_blank"
-                    class="transition-colors hover:text-foreground/80 text-foreground/60">GitHub</a>
+                    class="transition-colors hover:text-foreground text-muted-foreground">Components</a>
             </nav>
             <div class="ml-auto flex items-center space-x-4">
-                <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-input transition-colors"
+                <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-muted transition-colors"
                     aria-label="Toggle dark mode">
-                    <x-lucide-moon x-show="!darkMode" class="size-5" />
-                    <x-lucide-sun x-show="darkMode" class="size-5" />
+                    <x-dynamic-component component="lucide-moon" x-show="!darkMode" class="size-5" />
+                    <x-dynamic-component component="lucide-sun" x-show="darkMode" class="size-5" />
                 </button>
                 <a href="https://github.com/jiordiviera/php-ui" target="_blank"
-                    class="rounded-md p-2 hover:bg-background/60 transition-colors">
-                    <x-icons.github class="size-5 text-foreground" />
+                    class="rounded-md p-2 hover:bg-muted transition-colors">
+                    <x-dynamic-component component="icons.github" class="size-5 text-muted-foreground hover:text-foreground" />
                 </a>
             </div>
         </div>
@@ -103,53 +100,18 @@
         {{ $slot }}
     </main>
 
-    <footer class="py-6 md:px-8 md:py-0">
+    <footer class="border-t border-border py-6 md:px-8 md:py-0">
         <div
             class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4 md:px-6">
-            <p class="text-center text-sm leading-loose text-foreground/80 md:text-left">
+            <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
                 Built by <a href="https://jiordiviera.me" target="_blank"
-                    class="font-medium underline underline-offset-4">Jiordi Viera</a>.
+                    class="font-medium underline underline-offset-4 hover:text-foreground transition-colors">Jiordi Viera</a>.
                 The source code is available on <a href="https://github.com/jiordiviera/php-ui" target="_blank"
-                    class="font-medium underline underline-offset-4">GitHub</a>.
+                    class="font-medium underline underline-offset-4 hover:text-foreground transition-colors">GitHub</a>.
             </p>
         </div>
     </footer>
     @livewireScripts()
-
-    <!-- Scroll Animations Script -->
-    <script>
-        function scrollAnimations() {
-            return {
-                init() {
-                    // Intersection Observer for fade-in animations
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('animate-fade-in');
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, {
-                        threshold: 0.1,
-                        rootMargin: '0px 0px -50px 0px'
-                    });
-
-                    // Observe all sections with animation
-                    document.querySelectorAll('section').forEach(section => {
-                        section.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-700', 'ease-out');
-                        observer.observe(section);
-                    });
-                }
-            }
-        }
-    </script>
-
-    <style>
-        .animate-fade-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    </style>
 </body>
 
 </html>
