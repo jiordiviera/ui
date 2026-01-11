@@ -87,12 +87,18 @@
                             </div>
                         </div>
                         <div class="relative">
-                            <img src="{{ asset('images/demo-video.svg') }}" alt="Demo video showing PHP-UI installation" class="w-full rounded-lg border border-border shadow-lg">
-                            <div class="absolute inset-0 bg-black/20 rounded-lg flex items-center justify-center">
-                                <div class="bg-white/90 rounded-full p-4 shadow-lg">
-                                    <x-lucide-play class="size-8 text-primary" />
-                                </div>
-                            </div>
+                            <video
+                                controls
+                                preload="metadata"
+                                class="w-full rounded-lg border border-border shadow-lg"
+                                poster="{{ asset('images/demo-video.png') }}"
+                            >
+                                <source src="{{ asset('videos/demo.mp4') }}" type="video/mp4">
+                                <p class="text-center py-8 text-muted-foreground">
+                                    Your browser doesn't support HTML5 video.
+                                    <a href="{{ asset('videos/demo.mp4') }}" class="text-primary hover:underline">Download the video</a> instead.
+                                </p>
+                            </video>
                         </div>
                     </div>
 
