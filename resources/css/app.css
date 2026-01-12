@@ -142,17 +142,17 @@
      code, pre, tt {
         font-family: var(--font-mono) !important;
      }
-     .hide-scrollbar::-webkit-scrollbar {
-         display: none;
-     }
 }
 
-@layer utilities {
+@utility hide-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-/* \[:where(&)\]:size-4 {
+\[:where(&)\]:size-4 {
     @apply size-4;
-} */
+}
 
 [x-cloak] {
     display: none !important;

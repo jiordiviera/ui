@@ -57,72 +57,65 @@
         </div>
     </section>
 
-    {{-- Demo Section --}}
+    {{-- How it works Section --}}
     <section class="border-t border-border bg-muted/30">
         <div class="container mx-auto px-4 py-20 lg:py-28">
-            <div class="max-w-6xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <x-ui.badge variant="secondary" class="mb-4">How it works</x-ui.badge>
                     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
-                        One command, components in your project
+                        Simple as 1-2-3
                     </h2>
                     <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Run the command, and the component files are added directly to your Laravel project.
+                        Add beautiful components to your Laravel project in seconds.
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-                    {{-- Terminal Demo --}}
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <x-lucide-terminal class="size-4" />
-                            <span>Terminal</span>
+                <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
+                    {{-- Step 1 --}}
+                    <div class="text-center space-y-4">
+                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                            <x-lucide-terminal class="size-8 text-primary" />
                         </div>
-                        <div class="bg-card border border-border rounded-lg p-4 font-mono text-sm">
-                            <div class="text-muted-foreground">$ php-ui add button input alert</div>
-                            <div class="text-green-600 mt-2">
-                                ✓ Created resources/views/components/ui/button.blade.php<br>
-                                ✓ Created resources/views/components/ui/input.blade.php<br>
-                                ✓ Created resources/views/components/ui/alert.blade.php
+                        <div class="space-y-2">
+                            <h3 class="font-semibold text-foreground">1. Run command</h3>
+                            <div class="bg-card border border-border rounded-lg px-4 py-2 font-mono text-sm">
+                                php-ui add button
                             </div>
-                        </div>
-                        <div class="relative">
-                            <video
-                                controls
-                                preload="metadata"
-                                class="w-full rounded-lg border border-border shadow-lg"
-                                poster="{{ asset('images/demo-video.png') }}"
-                            >
-                                <source src="{{ asset('videos/demo.mp4') }}" type="video/mp4">
-                                <p class="text-center py-8 text-muted-foreground">
-                                    Your browser doesn't support HTML5 video.
-                                    <a href="{{ asset('videos/demo.mp4') }}" class="text-primary hover:underline">Download the video</a> instead.
-                                </p>
-                            </video>
                         </div>
                     </div>
 
-                    {{-- File Structure --}}
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <x-lucide-folder-tree class="size-4" />
-                            <span>Your project structure</span>
+                    {{-- Step 2 --}}
+                    <div class="text-center space-y-4">
+                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                            <x-lucide-file-plus class="size-8 text-primary" />
                         </div>
-                        <div class="bg-card border border-border rounded-lg p-4 font-mono text-sm">
-                            <div class="text-blue-600">resources/views/components/ui/</div>
-                            <div class="ml-4 text-foreground">
-                                ├── button.blade.php<br>
-                                ├── input.blade.php<br>
-                                └── alert.blade.php
+                        <div class="space-y-2">
+                            <h3 class="font-semibold text-foreground">2. Files added</h3>
+                            <p class="text-sm text-muted-foreground">
+                                Components copied to your project
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Step 3 --}}
+                    <div class="text-center space-y-4">
+                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
+                            <x-lucide-sparkles class="size-8 text-primary" />
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="font-semibold text-foreground">3. Use instantly</h3>
+                            <div class="bg-card border border-border rounded-lg px-4 py-2">
+                                <x-ui.button size="sm">Ready!</x-ui.button>
                             </div>
                         </div>
-                        <div class="relative">
-                            <img src="{{ asset('images/ui-preview.svg') }}" alt="UI components preview" class="w-full rounded-lg border border-border shadow-lg">
-                        </div>
-                        <p class="text-sm text-muted-foreground">
-                            Components are added to your project. Edit, customize, or delete them as needed.
-                        </p>
                     </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <p class="text-sm text-muted-foreground">
+                        No configuration needed. No vendor lock-in. Full control.
+                    </p>
                 </div>
             </div>
         </div>
