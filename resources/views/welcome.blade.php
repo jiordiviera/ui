@@ -146,47 +146,41 @@ php-ui add button input alert
         </div>
     </section>
 
-    {{-- Code + Preview Section --}}
+    {{-- Live Preview Section --}}
     <section class="border-t border-border">
         <div class="container mx-auto px-4 py-20 lg:py-28">
-            <div class="max-w-6xl mx-auto">
+            <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-16">
                     <x-ui.badge variant="secondary" class="mb-4">Live Preview</x-ui.badge>
                     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
-                        Clean Blade syntax
+                        Simple syntax, beautiful results
                     </h2>
                     <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Simple, readable components that work perfectly with Livewire.
+                        Clean Blade components that work perfectly with Livewire.
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-                    {{-- Code Side --}}
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <x-lucide-file-code class="size-4" />
-                            <span>resources/views/components/ui/button.blade.php</span>
-                        </div>
-                        <div class="bg-card border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    {{-- Code --}}
+                    <div>
+                        <div class="bg-card border border-border rounded-lg p-6">
                             @php
-                            $buttonCode = '```blade
-<button {{ $attributes->merge([\'class\' => \'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4\']) }}>
-    {{ $slot }}
-</button>
+                            $code = '```blade
+<x-ui.button>Get Started</x-ui.button>
+<x-ui.button variant="outline">Learn More</x-ui.button>
 ```';
                             @endphp
-                            <pre class="text-foreground"><x-markdown-content :content="$buttonCode" :copyable="false" /></pre>
+                            <x-markdown-content :content="$code" :copyable="false" />
                         </div>
                     </div>
-
-                    {{-- Preview Side --}}
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                            <x-lucide-eye class="size-4" />
-                            <span>Preview</span>
-                        </div>
+                    
+                    {{-- Preview --}}
+                    <div>
                         <div class="bg-card border border-border rounded-lg p-8">
-                            <x-ui.button>Click me</x-ui.button>
+                            <div class="flex gap-4">
+                                <x-ui.button>Get Started</x-ui.button>
+                                <x-ui.button variant="outline">Learn More</x-ui.button>
+                            </div>
                         </div>
                     </div>
                 </div>
