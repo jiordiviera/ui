@@ -84,8 +84,12 @@
 composer global require jiordiviera/php-ui
 ```';
                             @endphp
-<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
-                                    <x-markdown-content :content="$installCode" :copyable="false" />
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                                    <div class="overflow-x-auto -mx-3 sm:mx-0">
+                                        <div class="px-3 sm:px-0">
+                                            <x-markdown-content :content="$installCode" :copyable="false" />
+                                        </div>
+                                    </div>
                                 </div>
                             <p class="text-sm text-muted-foreground">
                                 One-time installation. Available in all your Laravel projects.
@@ -105,8 +109,12 @@ composer global require jiordiviera/php-ui
 php-ui add button input alert
 ```';
                             @endphp
-<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
-                                    <x-markdown-content :content="$addCode" :copyable="false" />
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                                    <div class="overflow-x-auto -mx-3 sm:mx-0">
+                                        <div class="px-3 sm:px-0">
+                                            <x-markdown-content :content="$addCode" :copyable="false" />
+                                        </div>
+                                    </div>
                                 </div>
                             <p class="text-sm text-muted-foreground">
                                 Components are copied directly to your Laravel project.
@@ -126,8 +134,12 @@ php-ui add button input alert
 <x-ui.button>Click me</x-ui.button>
 ```';
                             @endphp
-<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
-                                    <x-markdown-content :content="$useCode" :copyable="false" />
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3">
+                                    <div class="overflow-x-auto -mx-3 sm:mx-0">
+                                        <div class="px-3 sm:px-0">
+                                            <x-markdown-content :content="$useCode" :copyable="false" />
+                                        </div>
+                                    </div>
                                 </div>
                             <p class="text-sm text-muted-foreground">
                                 Edit, customize, or delete components as needed. Full control.
@@ -163,14 +175,18 @@ php-ui add button input alert
                 <div class="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
                     {{-- Code --}}
                     <div>
-                        <div class="bg-card border border-border rounded-lg p-3 sm:p-4 md:p-6 overflow-x-auto">
-                            @php
-                            $code = '```blade
+                        <div class="bg-card border border-border rounded-lg p-3 sm:p-4 md:p-6">
+                            <div class="overflow-x-auto -mx-3 sm:-mx-4 md:-mx-6">
+                                <div class="px-3 sm:px-4 md:px-6">
+                                    @php
+                                    $code = '```blade
 <x-ui.button>Get Started</x-ui.button>
 <x-ui.button variant="outline">Learn More</x-ui.button>
 ```';
-                            @endphp
-                            <x-markdown-content :content="$code" :copyable="false" />
+                                    @endphp
+                                    <x-markdown-content :content="$code" :copyable="false" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 

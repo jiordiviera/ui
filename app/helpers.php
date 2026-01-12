@@ -121,7 +121,7 @@ if (! function_exists('get_component_description')) {
      */
     function get_component_description(string $component): string
     {
-        return config('docs.navigation.components.library.' . $component . '.description', 'Beautiful, accessible component');
+        return config('docs.navigation.components.library.'.$component.'.description', 'Beautiful, accessible component');
     }
 }
 
