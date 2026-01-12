@@ -83,6 +83,7 @@
                     class="transition-colors hover:text-foreground text-muted-foreground">Components</a>
             </nav>
             <div class="ml-auto flex items-center space-x-4">
+                <x-ui.button href="/docs/installation" size="sm" wire:navigate>Get Started</x-ui.button>
                 <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-muted transition-colors"
                     aria-label="Toggle dark mode">
                     <x-dynamic-component component="lucide-moon" x-show="!darkMode" class="size-5" />
