@@ -18,12 +18,12 @@
                 </a>
 
                 {{-- Main Heading --}}
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-foreground">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
                     shadcn/ui, but for Laravel
                 </h1>
 
                 {{-- Subheading --}}
-                <p class="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                <p class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                     Add beautiful, accessible components to your Laravel project with a single command.
                     The code is copied directly to your repository - no vendor lock-in, full ownership.
                 </p>
@@ -38,18 +38,18 @@
 
                 {{-- Command Example --}}
                 <div class="pt-6">
-                    <div class="inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-card border border-border font-mono text-sm">
-                        <span class="text-muted-foreground">$</span>
-                        <code class="text-foreground">php-ui add button</code>
+                    <div class="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-2 sm:py-3 rounded-lg sm:rounded-xl bg-card border border-border font-mono text-xs sm:text-sm max-w-full overflow-x-auto">
+                        <span class="text-muted-foreground flex-shrink-0">$</span>
+                        <code class="text-foreground min-w-0">php-ui add button</code>
                         <button
                             @click="navigator.clipboard.writeText('php-ui add button'); copied = true; setTimeout(() => copied = false, 2000)"
-                            class="p-1.5 rounded-md hover:bg-accent transition-all duration-200"
+                            class="p-1.5 rounded-md hover:bg-accent transition-all duration-200 flex-shrink-0"
                             :class="copied ? 'text-primary' : 'text-muted-foreground'"
                             :aria-label="copied ? 'Copied to clipboard' : 'Copy to clipboard'"
                             x-data="{ copied: false }"
                         >
-                            <x-lucide-check x-show="copied" class="size-4" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="scale-50 opacity-0" x-transition:enter-end="scale-100 opacity-100" />
-                            <x-lucide-copy x-show="!copied" class="size-4" />
+                            <x-lucide-check x-show="copied" class="size-3 sm:size-4" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="scale-50 opacity-0" x-transition:enter-end="scale-100 opacity-100" />
+                            <x-lucide-copy x-show="!copied" class="size-3 sm:size-4" />
                         </button>
                     </div>
                 </div>
@@ -71,9 +71,9 @@
                     </p>
                 </div>
 
-                <div class="space-y-8">
+                <div class="space-y-6 sm:space-y-8">
                     {{-- Step 1: Install --}}
-                    <div class="flex items-start gap-6">
+                    <div class="flex items-start gap-4 sm:gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
                             1
                         </div>
@@ -84,9 +84,9 @@
 composer global require jiordiviera/php-ui
 ```';
                             @endphp
-                            <div class="bg-card border border-border rounded-lg px-4 py-3">
-                                <x-markdown-content :content="$installCode" :copyable="false" />
-                            </div>
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
+                                    <x-markdown-content :content="$installCode" :copyable="false" />
+                                </div>
                             <p class="text-sm text-muted-foreground">
                                 One-time installation. Available in all your Laravel projects.
                             </p>
@@ -94,7 +94,7 @@ composer global require jiordiviera/php-ui
                     </div>
 
                     {{-- Step 2: Add components --}}
-                    <div class="flex items-start gap-6">
+                    <div class="flex items-start gap-4 sm:gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
                             2
                         </div>
@@ -105,9 +105,9 @@ composer global require jiordiviera/php-ui
 php-ui add button input alert
 ```';
                             @endphp
-                            <div class="bg-card border border-border rounded-lg px-4 py-3">
-                                <x-markdown-content :content="$addCode" :copyable="false" />
-                            </div>
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
+                                    <x-markdown-content :content="$addCode" :copyable="false" />
+                                </div>
                             <p class="text-sm text-muted-foreground">
                                 Components are copied directly to your Laravel project.
                             </p>
@@ -115,7 +115,7 @@ php-ui add button input alert
                     </div>
 
                     {{-- Step 3: Use --}}
-                    <div class="flex items-start gap-6">
+                    <div class="flex items-start gap-4 sm:gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
                             3
                         </div>
@@ -126,9 +126,9 @@ php-ui add button input alert
 <x-ui.button>Click me</x-ui.button>
 ```';
                             @endphp
-                            <div class="bg-card border border-border rounded-lg px-4 py-3">
-                                <x-markdown-content :content="$useCode" :copyable="false" />
-                            </div>
+<div class="bg-card border border-border rounded-lg px-3 sm:px-4 py-2 sm:py-3 overflow-x-auto">
+                                    <x-markdown-content :content="$useCode" :copyable="false" />
+                                </div>
                             <p class="text-sm text-muted-foreground">
                                 Edit, customize, or delete components as needed. Full control.
                             </p>
@@ -160,10 +160,10 @@ php-ui add button input alert
                     </p>
                 </div>
 
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                <div class="grid lg:grid-cols-2 gap-4 lg:gap-8 items-center">
                     {{-- Code --}}
                     <div>
-                        <div class="bg-card border border-border rounded-lg p-6">
+                        <div class="bg-card border border-border rounded-lg p-3 sm:p-4 md:p-6 overflow-x-auto">
                             @php
                             $code = '```blade
 <x-ui.button>Get Started</x-ui.button>
@@ -173,11 +173,11 @@ php-ui add button input alert
                             <x-markdown-content :content="$code" :copyable="false" />
                         </div>
                     </div>
-                    
+
                     {{-- Preview --}}
                     <div>
-                        <div class="bg-card border border-border rounded-lg p-8">
-                            <div class="flex gap-4">
+                        <div class="bg-card border border-border rounded-lg p-6 sm:p-8">
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
                                 <x-ui.button>Get Started</x-ui.button>
                                 <x-ui.button variant="outline">Learn More</x-ui.button>
                             </div>
@@ -202,7 +202,7 @@ php-ui add button input alert
                     </p>
                 </div>
 
-                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     {{-- Button --}}
                     <a href="/docs/components/button" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors">
                         <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">

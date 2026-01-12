@@ -65,7 +65,7 @@
     @livewireStyles()
 </head>
 
-<body class="min-h-screen scroll-smooth bg-background font-sans text-foreground" x-data="{
+<body class="min-h-screen scroll-smooth bg-background font-sans text-foreground overflow-x-hidden" x-data="{
         darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
     }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }">
 
