@@ -64,58 +64,83 @@
                 <div class="text-center mb-16">
                     <x-ui.badge variant="secondary" class="mb-4">How it works</x-ui.badge>
                     <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
-                        Simple as 1-2-3
+                        Get started in 3 steps
                     </h2>
                     <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Add beautiful components to your Laravel project in seconds.
+                        Install once, use forever. No configuration needed.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8 lg:gap-12">
-                    {{-- Step 1 --}}
-                    <div class="text-center space-y-4">
-                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                            <x-lucide-terminal class="size-8 text-primary" />
+                <div class="space-y-8">
+                    {{-- Step 1: Install --}}
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
+                            1
                         </div>
-                        <div class="space-y-2">
-                            <h3 class="font-semibold text-foreground">1. Run command</h3>
-                            <div class="bg-card border border-border rounded-lg px-4 py-2 font-mono text-sm">
-                                php-ui add button
+                        <div class="flex-1 space-y-3">
+                            <h3 class="font-semibold text-foreground">Install PHP-UI globally</h3>
+                            @php
+                            $installCode = '```bash
+composer global require jiordiviera/php-ui
+```';
+                            @endphp
+                            <div class="bg-card border border-border rounded-lg px-4 py-3">
+                                <x-markdown-content :content="$installCode" :copyable="false" />
                             </div>
-                        </div>
-                    </div>
-
-                    {{-- Step 2 --}}
-                    <div class="text-center space-y-4">
-                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                            <x-lucide-file-plus class="size-8 text-primary" />
-                        </div>
-                        <div class="space-y-2">
-                            <h3 class="font-semibold text-foreground">2. Files added</h3>
                             <p class="text-sm text-muted-foreground">
-                                Components copied to your project
+                                One-time installation. Available in all your Laravel projects.
                             </p>
                         </div>
                     </div>
 
-                    {{-- Step 3 --}}
-                    <div class="text-center space-y-4">
-                        <div class="size-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                            <x-lucide-sparkles class="size-8 text-primary" />
+                    {{-- Step 2: Add components --}}
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
+                            2
                         </div>
-                        <div class="space-y-2">
-                            <h3 class="font-semibold text-foreground">3. Use instantly</h3>
-                            <div class="bg-card border border-border rounded-lg px-4 py-2">
-                                <x-ui.button size="sm">Ready!</x-ui.button>
+                        <div class="flex-1 space-y-3">
+                            <h3 class="font-semibold text-foreground">Add components to your project</h3>
+                            @php
+                            $addCode = '```bash
+php-ui add button input alert
+```';
+                            @endphp
+                            <div class="bg-card border border-border rounded-lg px-4 py-3">
+                                <x-markdown-content :content="$addCode" :copyable="false" />
                             </div>
+                            <p class="text-sm text-muted-foreground">
+                                Components are copied directly to your Laravel project.
+                            </p>
+                        </div>
+                    </div>
+
+                    {{-- Step 3: Use --}}
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-semibold">
+                            3
+                        </div>
+                        <div class="flex-1 space-y-3">
+                            <h3 class="font-semibold text-foreground">Use in your Blade views</h3>
+                            @php
+                            $useCode = '```blade
+<x-ui.button>Click me</x-ui.button>
+```';
+                            @endphp
+                            <div class="bg-card border border-border rounded-lg px-4 py-3">
+                                <x-markdown-content :content="$useCode" :copyable="false" />
+                            </div>
+                            <p class="text-sm text-muted-foreground">
+                                Edit, customize, or delete components as needed. Full control.
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center mt-12">
-                    <p class="text-sm text-muted-foreground">
-                        No configuration needed. No vendor lock-in. Full control.
-                    </p>
+                    <x-ui.button href="/docs/installation" variant="outline" class="gap-2">
+                        <x-lucide-book-open class="size-4" />
+                        Detailed installation guide
+                    </x-ui.button>
                 </div>
             </div>
         </div>
