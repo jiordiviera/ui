@@ -1,6 +1,8 @@
 <x-layouts.app>
-    <div class="container mx-auto flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 px-4 md:px-6">
-        <aside class="fixed top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block overflow-y-auto border-r border-zinc-200 dark:border-zinc-800 pr-4">
+    <div
+        class="container mx-auto flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10 px-4 md:px-6">
+        <aside
+            class="fixed no-scrollbar top-14 z-30 -ml-2 hidden h-[calc(100vh-3.5rem)] w-full shrink-0 md:sticky md:block overflow-y-auto border-r border-border pr-4">
             <div class="py-6 pr-6 lg:py-8">
                 {{-- Getting Started Section --}}
                 <h4 class="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
