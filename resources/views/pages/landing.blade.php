@@ -10,7 +10,13 @@ new class extends Component
 
 <div>
    {{-- Hero Section --}}
-    <section class="relative overflow-hidden min-h-screen">
+    <section class="relative overflow-hidden min-h-screen flex flex-col justify-center">
+        {{-- Background Effects --}}
+        <div class="absolute inset-0 -z-10 h-full w-full bg-background">
+            <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] dark:bg-[radial-gradient(#1f2937_1px,transparent_1px)]"></div>
+            <div class="absolute h-full w-full bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
+        </div>
+
         <div class="container mx-auto px-4 py-20 lg:py-32">
             <div class="max-w-4xl mx-auto text-center space-y-8">
                 {{-- Announcement --}}
@@ -230,7 +236,7 @@ php-ui add button input alert
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     {{-- Button --}}
-                    <a href="/docs/components/button" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors">
+                    <a href="/docs/components/button" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
                         <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                             <x-lucide-mouse-pointer-click class="size-6 text-primary" />
                         </div>
@@ -239,7 +245,7 @@ php-ui add button input alert
                     </a>
 
                     {{-- Input --}}
-                    <a href="/docs/components/input" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors">
+                    <a href="/docs/components/input" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
                         <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                             <x-lucide-text-cursor-input class="size-6 text-primary" />
                         </div>
@@ -248,7 +254,7 @@ php-ui add button input alert
                     </a>
 
                     {{-- Alert --}}
-                    <a href="/docs/components/alert" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors">
+                    <a href="/docs/components/alert" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
                         <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                             <x-lucide-bell class="size-6 text-primary" />
                         </div>
@@ -257,7 +263,7 @@ php-ui add button input alert
                     </a>
 
                     {{-- Badge --}}
-                    <a href="/docs/components/badge" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 transition-colors">
+                    <a href="/docs/components/badge" class="group block p-6 rounded-xl border border-border bg-card hover:border-primary/50 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
                         <div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                             <x-lucide-tag class="size-6 text-primary" />
                         </div>

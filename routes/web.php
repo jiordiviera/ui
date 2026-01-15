@@ -4,10 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::livewire('/', 'pages::landing')->name('home');
 
-Route::get('/docs/{page?}', function ($page = 'introduction') {
-    return view('docs.show', ['page' => $page]);
-})->name('docs.show');
+Route::livewire('/docs/{page?}', 'pages::docs.show')->name('docs.show');
 
-Route::get('/docs/components/{component?}', function ($component = null) {
-    return view('docs.show', ['page' => $component]);
-})->name('components.show');
+Route::livewire('/docs/components/{component?}', 'pages::docs.components')->name('components.show');

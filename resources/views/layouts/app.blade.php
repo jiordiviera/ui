@@ -8,8 +8,10 @@
     <!-- SEO Meta Tags -->
     <title>PHP-UI - 50+ Beautiful Blade Components for Laravel | Open Source</title>
     {{-- <title>{{ $title ?? config('app.name') }}</title> --}}
-    <meta name="description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours. No npm packages, no build complexity.">
-    <meta name="keywords" content="Laravel, Blade components, UI components, Tailwind CSS, Livewire, open source, PHP, web development">
+    <meta name="description"
+        content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours. No npm packages, no build complexity.">
+    <meta name="keywords"
+        content="Laravel, Blade components, UI components, Tailwind CSS, Livewire, open source, PHP, web development">
     <meta name="author" content="Jiordi Viera">
     <meta name="robots" content="index, follow">
 
@@ -17,7 +19,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url('/') }}">
     <meta property="og:title" content="PHP-UI - 50+ Beautiful Blade Components for Laravel">
-    <meta property="og:description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
+    <meta property="og:description"
+        content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
     <meta property="og:image" content="{{ url('/images/og-image.png') }}">
     <meta property="og:site_name" content="PHP-UI">
 
@@ -25,50 +28,65 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url('/') }}">
     <meta property="twitter:title" content="PHP-UI - 50+ Beautiful Blade Components for Laravel">
-    <meta property="twitter:description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
+    <meta property="twitter:description"
+        content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours.">
     <meta property="twitter:image" content="{{ url('/images/og-image.png') }}">
     <meta property="twitter:creator" content="@jiordiviera">
 
     <!-- Structured Data -->
     <script type="application/ld+json">
     @verbatim
-    {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "PHP-UI",
-        "description": "50+ beautifully crafted Blade components for Laravel",
-        "url": "{{ url('/') }}",
-        "author": {
-            "@type": "Person",
-            "name": "Jiordi Viera",
-            "url": "https://jiordiviera.me"
-        },
-        "license": "https://opensource.org/licenses/MIT",
-        "programmingLanguage": "PHP",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Any",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "keywords": "Laravel, Blade, UI components, Tailwind CSS, Livewire, open source"
-    }
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "PHP-UI",
+            "description": "50+ beautifully crafted Blade components for Laravel",
+            "url": "{{ url('/') }}",
+            "author": {
+                "@type": "Person",
+                "name": "Jiordi Viera",
+                "url": "https://jiordiviera.me"
+            },
+            "license": "https://opensource.org/licenses/MIT",
+            "programmingLanguage": "PHP",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "keywords": "Laravel, Blade, UI components, Tailwind CSS, Livewire, open source"
+        }
     @endverbatim
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Fira+Code:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <script>
+        if (localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles()
 </head>
 
 <body class="min-h-screen scroll-smooth bg-background font-sans text-foreground overflow-x-hidden" x-data="{
-        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-    }" x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val))" :class="{ 'dark': darkMode }">
+        darkMode: localStorage.getItem('darkMode') === 'true' || (!('darkMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches),
+    }" x-init="$watch('darkMode', val => {
+        localStorage.setItem('darkMode', val);
+        if (val) document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+    })" :class="{ 'dark': darkMode }">
 
     <!-- Navbar -->
     <header
@@ -84,16 +102,53 @@
                     class="transition-colors hover:text-foreground text-muted-foreground">Components</a>
             </nav>
             <div class="ml-auto flex items-center space-x-4">
-                <x-ui.button href="/docs/installation" size="sm" wire:navigate>Get Started</x-ui.button>
-                <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-muted transition-colors"
-                    aria-label="Toggle dark mode">
-                    <x-dynamic-component component="lucide-moon" x-show="!darkMode" class="size-5" />
-                    <x-dynamic-component component="lucide-sun" x-show="darkMode" class="size-5" />
-                </button>
-                <a href="https://github.com/jiordiviera/php-ui" target="_blank"
-                    class="rounded-md p-2 hover:bg-muted transition-colors">
-                    <x-dynamic-component component="icons.github" class="size-5 text-muted-foreground hover:text-foreground" />
-                </a>
+                <div class="hidden md:flex items-center space-x-4">
+                    <x-ui.button href="/docs/installation" size="sm" wire:navigate>Get Started</x-ui.button>
+                    <button @click="darkMode = !darkMode" class="rounded-md p-2 hover:bg-muted transition-colors"
+                        aria-label="Toggle dark mode">
+                        <x-dynamic-component component="lucide-moon" x-show="!darkMode" class="size-5" />
+                        <x-dynamic-component component="lucide-sun" x-show="darkMode" class="size-5" />
+                    </button>
+                    <a href="https://github.com/jiordiviera/php-ui" target="_blank"
+                        class="rounded-md p-2 hover:bg-muted transition-colors">
+                        <x-dynamic-component component="icons.github"
+                            class="size-5 text-muted-foreground hover:text-foreground" />
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <x-ui.drawer position="right" class="md:hidden">
+                    <x-slot:trigger>
+                        <x-ui.button icon="menu" iconOnly aria-label="Toggle mobile menu" />
+                    </x-slot:trigger>
+
+                    <x-slot:header>
+                        <span class="font-bold">Navigation</span>
+                    </x-slot:header>
+
+                    <nav class="flex flex-col space-y-4 p-4">
+                        <a href="/docs/installation" wire:navigate @click="close()"
+                            class="text-sm font-medium text-foreground hover:text-primary transition-colors">Docs</a>
+                        <a href="/docs/components" wire:navigate @click="close()"
+                            class="text-sm font-medium text-foreground hover:text-primary transition-colors">Components</a>
+                        <div class="flex items-center justify-between pt-4 border-t border-border">
+                            <div class="flex items-center space-x-2">
+                                <button @click="darkMode = !darkMode"
+                                    class="flex items-center space-x-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                                    <x-dynamic-component component="lucide-moon" x-show="!darkMode" class="size-5" />
+                                    <x-dynamic-component component="lucide-sun" x-show="darkMode" class="size-5" />
+                                    <span class="sr-only">{{ 'Dark' }} Mode</span>
+                                </button>
+                            </div>
+                            <a href="https://github.com/jiordiviera/php-ui" target="_blank"
+                                class="text-muted-foreground hover:text-foreground transition-colors">
+                                <x-dynamic-component component="icons.github" class="size-5" />
+                            </a>
+                        </div>
+                        <x-ui.button href="/docs/installation" class="w-full justify-center" wire:navigate
+                            @click="close()">Get Started</x-ui.button>
+                    </nav>
+                </x-ui.drawer>
             </div>
         </div>
     </header>
@@ -107,7 +162,8 @@
             class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4 md:px-6">
             <p class="text-center text-sm leading-loose text-muted-foreground md:text-left">
                 Built by <a href="https://jiordiviera.me" target="_blank"
-                    class="font-medium underline underline-offset-4 hover:text-foreground transition-colors">Jiordi Viera</a>.
+                    class="font-medium underline underline-offset-4 hover:text-foreground transition-colors">Jiordi
+                    Viera</a>.
                 The source code is available on <a href="https://github.com/jiordiviera/php-ui" target="_blank"
                     class="font-medium underline underline-offset-4 hover:text-foreground transition-colors">GitHub</a>.
             </p>
