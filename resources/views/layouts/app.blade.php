@@ -7,6 +7,7 @@
 
     <!-- SEO Meta Tags -->
     <title>PHP-UI - 50+ Beautiful Blade Components for Laravel | Open Source</title>
+    {{-- <title>{{ $title ?? config('app.name') }}</title> --}}
     <meta name="description" content="Stop writing the same UI components over and over. PHP-UI provides 50+ beautifully crafted Blade components for Laravel. Copy, paste, and make them yours. No npm packages, no build complexity.">
     <meta name="keywords" content="Laravel, Blade components, UI components, Tailwind CSS, Livewire, open source, PHP, web development">
     <meta name="author" content="Jiordi Viera">

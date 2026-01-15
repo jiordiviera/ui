@@ -1,5 +1,15 @@
-<x-layouts.app>
-    {{-- Hero Section --}}
+<?php
+
+use Livewire\Component;
+
+new class extends Component
+{
+    //
+};
+?>
+
+<div>
+   {{-- Hero Section --}}
     <section class="relative overflow-hidden bg-gradient-to-br from-background to-muted/20">
         <div class="container mx-auto px-4 py-20 lg:py-32">
             <div class="max-w-4xl mx-auto text-center space-y-8">
@@ -317,4 +327,4 @@ php-ui add button input alert
             </div>
         </div>
     </section>
-</x-layouts.app>
+</div>

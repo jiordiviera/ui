@@ -21,7 +21,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
-        "jiordiviera/php-ui": "^1.0",
+        "jiordiviera/php-ui": "dev-main",
         "laravel/boost": "^1.8",
         "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.24",

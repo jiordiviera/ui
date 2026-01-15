@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::livewire('/', 'pages::landing')->name('home');
 
 Route::get('/docs/{page?}', function ($page = 'introduction') {
     return view('docs.show', ['page' => $page]);
